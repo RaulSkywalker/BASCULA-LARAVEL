@@ -37,9 +37,9 @@
                         @method("PUT")
                         <div class="form-group row">
                             <input type="hidden" name="oldname" value="{{ $product->name }}">
-                            <label for="name" class="col-4 col-form-label">Nombre del grupo:</label>
+                            <label for="name" class="col-4 col-form-label">Nombre del producto:</label>
                             <div class="col-8">
-                                <input id="name" name="name" placeholder="nombre del grupo" type="text"
+                                <input id="name" name="name" placeholder="nombre del producto" type="text"
                                        class="form-control" value="{{ $product->name }}">
                             </div>
                             @if ($errors->has("name"))
@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label for="price" class="col-4 col-form-label">Precio:</label>
                             <div class="col-8">
-                                <input id="price" name="price" placeholder="Valor aprox del regalo" type="text"
+                                <input id="price" name="price" placeholder="Precio del producto" type="text"
                                        class="form-control" value="{{ $product->price }}">
                             </div>
                             @if ($errors->has("importe"))
