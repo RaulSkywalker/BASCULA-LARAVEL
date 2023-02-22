@@ -60,5 +60,6 @@
         Precio Total: {{ $total }} €
     </div>
 </div>
+<a href="{{route("home")}}" class="btn btn-success btn-lg">Volver a comprar</a>
 </body>
 </html>
