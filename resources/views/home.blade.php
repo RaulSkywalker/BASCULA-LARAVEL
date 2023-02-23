@@ -179,7 +179,7 @@
                         <h2>Total : {{ $totalPrice }} €</h2>
                     @endif
                 </div>
-                <a id="confirmarCompra" href="{{route("ticket.index")}}" class="btn btn-success btn-lg">Confirmar compra</a>
+                <a  href="{{route("ticket.index")}}" class="btn btn-success btn-lg">Confirmar compra</a>
             </div>
         </aside>
     </main>
@@ -191,13 +191,9 @@
 
     function addItem(id) {
         document.getElementById("id").value = id;
-        document.getElementById("confirmarCompra").addEventListener("click", function(event) {
-            if (!window.confirm("¿Estás seguro de que quieres confirmar la compra?")) {
-                event.preventDefault();
-            }
-        });
-        document.getElementById("calculateForm").submit();
 
+
+        document.getElementById("calculateForm").submit();
     }
 </script>
 </html>

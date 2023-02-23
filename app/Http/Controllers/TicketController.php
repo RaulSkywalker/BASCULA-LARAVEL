@@ -5,8 +5,10 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Ticket;
 use App\Models\TicketItem;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Dompdf\Dompdf;
 
 class TicketController extends Controller
 {
@@ -25,6 +27,21 @@ class TicketController extends Controller
         $ticket->total = $total;
         $ticket->save();
 
+        return view('ticket', ["cart" => $cart, "total" => $total, "id_cliente" => $ticket->id]);
+
+    }
+
+   public function descargarPDF($id)
+    {
+        $cart = Cart::where('borrado', 0)->get();
+        $total = number_format($cart->sum('totalprice'), 2);
+        $cart = $cart->map(function ($item) {
+            $item['name'] = Product::find($item['product_id'])->name;
+            return $item;
+        });
+        $ticket = Ticket::find($id);
+
+
         foreach ($cart as $item) {
             $ticketItem = new TicketItem();
             $ticketItem->ticket_id = $ticket->id;
@@ -36,11 +53,9 @@ class TicketController extends Controller
 
         Cart::where('borrado', 0)->update(['borrado' => 1]);
 
-        return view('ticket', ["cart" => $cart, "total" => $total, "id_cliente" => $ticket->id]);
-
-
+        $pdf = PDF::loadview('ticket',["cart" => $cart, "total" => $total, "id_cliente" => $ticket->id]);
+        return $pdf->download('ticket.pdf');
     }
-
 
 
 

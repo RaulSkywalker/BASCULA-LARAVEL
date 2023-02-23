@@ -21,6 +21,9 @@ Route::delete('/{id}',[ProductController::class,'removeCartItem'])->name('cart.r
 Route::get('/login',function () {return view('auth.login');})->name('auth.login');
 Route::get('/add',function () {return view('anadirproducto');})->name('anadirproducto');
 
+
+Route::get('/descargarPDFTicket/{id}',[\App\Http\Controllers\TicketController::class,"descargarPDF"])->name('descargarPDF');
+
 //Route::get('/products/{id}',function () {return view('modificarproducto');})->name('product.edit');
 Route::resource('/products', ProductController::class)->except('edit');
 
